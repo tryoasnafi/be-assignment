@@ -8,7 +8,9 @@ Features:
 - Transaction histories per account
 
 ### API Documentation
-You can look to docs directory or open the documentation here
+You can look to docs for each directory or open the documentation here:
+- [Account API](http://localhost:9090/docs/index.html) 
+- [Transaction API](http://localhost:9091/docs/index.html) 
 
 ### Tech-stack:
 - Supertokens
@@ -32,12 +34,12 @@ You need to have:
 5. You need to install air
 6. Run make up or `docker compose -f compose.dev.yml up -d`
 ```sh
-$ git clone https://github.com/tryoasnafi/be-assignment
-$ cd be-assignment/account
-$ cp -p .env.example .env
-$ go install
-$ cd ../payment
-$ cp -p .env.example .env
-$ go install
-$ go install github.com/cosmtrek/air@latest
+git clone https://github.com/tryoasnafi/be-assignment
+cd be-assignment/account
+cp -p .env.example .env
+go get ./...
+cd ../payment
+cp -p .env.example .env
+go get ./...
+go install github.com/cosmtrek/air@latest
 ```
