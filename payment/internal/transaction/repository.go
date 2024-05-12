@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	. "github.com/tryoasnafi/be-assignment/payment/internal/transaction/dto"
+	. "github.com/tryoasnafi/be-assignment/common/dto"
 	"gorm.io/gorm"
 )
 

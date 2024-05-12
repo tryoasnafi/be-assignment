@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	. "github.com/tryoasnafi/be-assignment/common/dto"
 	"github.com/tryoasnafi/be-assignment/payment/internal/auth"
-	. "github.com/tryoasnafi/be-assignment/payment/internal/transaction/dto"
 	"gorm.io/gorm"
 )
 
