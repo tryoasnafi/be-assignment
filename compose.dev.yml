@@ -1,0 +1,76 @@
+services:
+  account_manager:
+    build: account
+    command: sh -c "cd /app/account && air"
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+      supertokens:
+        condition: service_healthy
+    env_file:
+      - ./account/.env
+    ports:
+      - 9090:9090
+    networks:
+      - app_network
+    volumes:
+      - .:/app
+
+  payment_manager:
+    build: payment
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+    command: sh -c "cd /app/payment && air"
+    env_file:
+      - ./payment/.env
+    ports:
+      - 9091:9091
+    networks:
+      - app_network
+    volumes:
+      - .:/app
+
+  postgresdb:
+    image: 'postgres:16'
+    environment:
+      POSTGRES_USER: postgresbank 
+      POSTGRES_PASSWORD: somePassword 
+      POSTGRES_DB: corebank
+    ports:
+      - 5432:5432
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgresbank', '-d', 'corebank']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql:9.0.2
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+    ports:
+      - 3567:3567
+    environment:
+      POSTGRESQL_CONNECTION_URI: "postgresql://postgresbank:somePassword@postgresdb:5432/corebank"
+      # API_KEYS: "helloworld"
+    networks:
+      - app_network
+    restart: unless-stopped
+    healthcheck:
+      test: >
+        bash -c 'exec 3<>/dev/tcp/127.0.0.1/3567 && echo -e "GET /hello HTTP/1.1\r\nhost: 127.0.0.1:3567\r\nConnection: close\r\n\r\n" >&3 && cat <&3 | grep "Hello"'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  postgres_data: {}
