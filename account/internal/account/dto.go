@@ -4,12 +4,12 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/tryoasnafi/be-assignment/common/dto"
+	. "github.com/tryoasnafi/be-assignment/common/model"
 )
 
 type CreateAccountRequest struct {
 	UserID   uuid.UUID       `json:"user_id"`
-	Type     dto.AccountType `json:"type"`
+	Type     AccountType `json:"type"`
 	Currency string          `json:"currency"`
 }
 

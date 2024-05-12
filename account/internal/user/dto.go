@@ -3,7 +3,7 @@ package user
 import (
 	"github.com/google/uuid"
 	"github.com/tryoasnafi/be-assignment/account/internal"
-	"github.com/tryoasnafi/be-assignment/common/dto"
+	"github.com/tryoasnafi/be-assignment/common/model"
 	"gorm.io/datatypes"
 )
 
@@ -16,5 +16,5 @@ type User struct {
 	DOB         datatypes.Date `json:"dob"`
 	Email       string         `json:"email"`
 	PhoneNumber string         `json:"phone_number"`
-	Accounts    []*dto.Account `json:"accounts,omitempty" gorm:"foreignKey:user_id;references:uuid"`
+	Accounts    []*model.Account `json:"accounts,omitempty" gorm:"foreignKey:user_id;references:uuid"`
 }
