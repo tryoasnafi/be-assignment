@@ -1,57 +1,43 @@
-# Take home assignment
-
-
-## Description:
-Build 2 Backend services which manages user’s accounts and transactions (send/withdraw). 
-
-In Account Manager service, we have:
-- User: Login with Id/Password
-- Payment Account: One user can have multiple accounts like credit, debit, loan...
-- Payment History: Records of transactions
-
-In Payment Manager service, we have:
-- Transaction: Include basic information like amount, timestamp, toAddress, status...
-- We have a core transaction process function, that will be executed by `/send` or `/withdraw` API:
-
-```js
-function processTransaction(transaction) {
-    return new Promise((resolve, reject) => {
-        console.log('Transaction processing started for:', transaction);
-
-        // Simulate long running process
-        setTimeout(() => {
-            // After 30 seconds, we assume the transaction is processed successfully
-            console.log('transaction processed for:', transaction);
-            resolve(transaction);
-        }, 30000); // 30 seconds
-    });
-}
-
-// Example usage
-let transaction = { amount: 100, currency: 'USD' }; // Sample transaction input
-processTransaction(transaction)
-    .then((processedTransaction) => {
-        console.log('transaction processing completed for:', processedTransaction);
-    })
-    .catch((error) => {
-        console.error('transaction processing failed:', error);
-    });
-```
+# Simple Core Bank
+Simple core bank: send and withdraw transaction
 
 Features:
-- Users need to register/log in and then be able to call APIs.
-- APIs for 2 operations send/withdraw. Account statements will be updated after the transaction is successful.
-- APIs to retrieve all accounts and transactions per account of the user.
-- Write Swagger docs for implemented APIs (Optional)
+- One user, multiple accounts
+- Send/Withdraw money
+- Get list of accounts per user
+- Transaction histories per account
+
+### API Documentation
+You can look to docs directory or open the documentation here
 
 ### Tech-stack:
-- Recommend using authentication 3rd party: Supertokens, Supabase...
-- `NodeJs/Golang` for API server (`Fastify/Gin` framework is the best choices)
-- `PostgreSQL/MongoDB` for Database. Recommend using `Prisma` for ORM.
-- `Docker` for containerization. Recommend using `docker-compose` for running containers.
+- Supertokens
+- Golang(GIN)
+- PostgreSQL 16 (GORM)
+- Docker
  
-## Target:
-- Good document/README to describe your implementation.
-- Make sure app functionality works as expected. Run and test it well.
-- Containerized and run the app using Docker.
-- Using `docker-compose` or any automation script to run the app with single command is a plus.
+### Prerequisites
+You need to have:
+- [go `1.22`](https://go.dev/doc/install)
+- [air](https://github.com/cosmtrek/air)
+- [docker cli](https://docs.docker.com/get-docker/)
+- [GNU Make](https://www.gnu.org/software/make/) (optional), if you used Linux it's already installed
+- good internet connection
+
+## Installation
+1. Clone the repository 
+2. Open cloned folder in your IDE or text editor
+3. Open terminal in the current working directory
+4. Copy .env.example to .env (do both account and payment)
+5. You need to install air
+6. Run make up or `docker compose -f compose.dev.yml up -d`
+```sh
+$ git clone https://github.com/tryoasnafi/be-assignment
+$ cd be-assignment/account
+$ cp -p .env.example .env
+$ go install
+$ cd ../payment
+$ cp -p .env.example .env
+$ go install
+$ go install github.com/cosmtrek/air@latest
+```
