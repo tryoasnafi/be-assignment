@@ -1,7 +1,7 @@
 package transaction
 
 import (
-	. "github.com/tryoasnafi/be-assignment/common/dto"
+	. "github.com/tryoasnafi/be-assignment/common/model"
 )
 
 type Service interface {
