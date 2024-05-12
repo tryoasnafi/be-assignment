@@ -31,7 +31,7 @@ func (repo AccountRepository) GetAccounts(userID uuid.UUID) ([]Account, error) {
 
 func (repo AccountRepository) Find(id uint) (*Account, error) {
 	account := &Account{}
-	result := repo.DB.First(account, id)
+	result := repo.DB.Preload("Histories").First(account, id)
 	return account, result.Error
 }
 
