@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/tryoasnafi/be-assignment/payment/internal/auth"
+	. "github.com/tryoasnafi/be-assignment/payment/internal/transaction/dto"
 	"gorm.io/gorm"
 )
 
@@ -47,7 +48,16 @@ func (h AccountHandler) Send(c *gin.Context) {
 }
 
 func (h AccountHandler) Withdraw(c *gin.Context) {
-	resp, err := h.transactionService.Withdraw(WithdrawRequest{})
+	withdrawReq := WithdrawRequest{}
+	if err := c.ShouldBindJSON(&withdrawReq); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "missing/invalid withdraw request",
+		})
+		c.Abort()
+		return
+	}
+
+	resp, err := h.transactionService.Withdraw(withdrawReq)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			c.JSON(http.StatusNotFound, gin.H{

@@ -1,10 +1,11 @@
-package transaction
+package dto
 
 import (
 	"time"
 
 	"github.com/google/uuid"
 )
+
 
 type TransactionOperation string
 

@@ -5,13 +5,13 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/tryoasnafi/be-assignment/payment/internal/transaction"
+	"github.com/tryoasnafi/be-assignment/payment/internal/transaction/dto"
 	"gorm.io/gorm"
 )
 
 func Migrate(d *gorm.DB) error {
 	return d.AutoMigrate(
-		transaction.Transaction{},
+		dto.Transaction{},
 	)
 }
 
