@@ -17,11 +17,32 @@ import (
 
 type SupertokensAPIFunc = func(originalImplementation epmodels.APIInterface) epmodels.APIInterface
 
+// Auth Supertokens
+// @Summary Sign in to get token
+// @Schemes
+// @Description get token from header fields (check docs for more details request example)
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Success 200 {object} AuthResponse
+// @Router /auth/signin [post]
+// @Param user body AuthRequest true "auth signin"
+// {
+//   "formFields": [
+//     {
+//       "id": "email",
+//       "value": "asnafi@gmail.com"
+//     },
+//     {
+//       "id": "password",
+//       "value": "helloworld1"
+//     }
+//   ]
+// }
 func Init(userService *user.UserService) error {
 	apiBasePath := "api/auth"
 	websiteBasePath := "/auth"
 	err := supertokens.Init(supertokens.TypeInput{
-		Debug: true,
 		Supertokens: &supertokens.ConnectionInfo{
 			ConnectionURI: os.Getenv("SUPERTOKENS_URI"),
 		},
@@ -54,6 +75,48 @@ func Init(userService *user.UserService) error {
 	return err
 }
 
+// Auth Supertokens
+// @Summary Sign up user
+// @Schemes
+// @Description register user (check docs for more details request example)
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Success 200 {} AuthResponse
+// @Router /auth/signup [post]
+// @Param user body AuthRequest true "auth signup"
+// {
+//   "formFields": [
+//     {
+//       "id": "email",
+//       "value": "asnafi1@gmail.com"
+//     },
+//     {
+//       "id": "password",
+//       "value": "helloworld1"
+//     },
+//      {
+//       "id": "first_name",
+//       "value": "asnafi"
+//     },
+//     {
+//       "id": "last_name",
+//       "value": "123"
+//     },
+//     {
+//       "id": "dob",
+//       "value": "2000-01-20"
+//     },
+//     {
+//       "id": "phone_number",
+//       "value": "+62817238123980"
+//     },
+//     {
+//       "id": "address",
+//       "value": "JL.OK"
+//     }
+//   ]
+// }
 func CustomSignupAPI(userService *user.UserService) SupertokensAPIFunc {
 	return func(originalImplementation epmodels.APIInterface) epmodels.APIInterface {
 		originalSignUpPOST := *originalImplementation.SignUpPOST

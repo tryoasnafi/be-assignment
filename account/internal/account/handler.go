@@ -23,6 +23,16 @@ type AccountHandler struct {
 	accountService Service
 }
 
+// GetAllAccounts
+// @Summary get all account of user
+// @Schemes
+// @Description get all related accounts of a user
+// @Tags accounts
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Success 200 {array} model.Account
+// @Router /accounts [get]
 func (h AccountHandler) GetAllAccounts(c *gin.Context) {
 	id, err := auth.GetUserIDFromRequest(c.Request)
 	if err != nil {
@@ -40,6 +50,17 @@ func (h AccountHandler) GetAllAccounts(c *gin.Context) {
 	c.JSON(http.StatusOK, accounts)
 }
 
+// GetAccountByID
+// @Summary get account by id
+// @Schemes
+// @Description get account by id
+// @Tags accounts
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Success 200 {object} model.Account
+// @Router /accounts/:id [get]
+// @Param id path int true "Account ID"
 func (h AccountHandler) GetAccountByID(c *gin.Context) {
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 64)
 	account, err := h.accountService.GetAccountByID(uint(id))
@@ -58,6 +79,16 @@ func (h AccountHandler) GetAccountByID(c *gin.Context) {
 	c.JSON(http.StatusOK, account)
 }
 
+// CreateAccount
+// @Summary create bank account
+// @Schemes
+// @Description create bank account
+// @Tags accounts
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Success 200 {array} model.Account
+// @Router /accounts [post]
 func (h AccountHandler) CreateAccount(c *gin.Context) {
 	accountReq := CreateAccountRequest{}
 	if err := c.ShouldBindJSON(&accountReq); err != nil {

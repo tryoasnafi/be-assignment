@@ -17,6 +17,17 @@ type UserHandler struct {
 	userService Service
 }
 
+// GetByID
+// @Summary create bank account
+// @Schemes
+// @Description create bank account
+// @Tags users
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Success 200 {array} User
+// @Router /users/:id [get]
+// @Param id path int true "User ID"
 func (h UserHandler) GetByID(c *gin.Context) {
 	userUUID, err := uuid.Parse(c.Param("id"))
 	if err != nil {

@@ -13,6 +13,11 @@ import (
 	"github.com/tryoasnafi/be-assignment/account/internal/cors"
 	"github.com/tryoasnafi/be-assignment/account/internal/database"
 	"github.com/tryoasnafi/be-assignment/account/internal/user"
+
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
+	_ "github.com/tryoasnafi/be-assignment/account/docs"
 )
 
 func init() {
@@ -22,6 +27,20 @@ func init() {
 	}
 }
 
+// @title           Account Service API
+// @version         1.0
+// @description     This is a account service - corebank.
+
+// @host      localhost:9090
+// @BasePath  /api
+
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
+// @description Type "Bearer" followed by a space and JWT token (Get JWT from header signin st-access-token).
+
+// @externalDocs.description  Supertokens Auth
+// @externalDocs.url          https://app.swaggerhub.com/apis/supertokens/FDI
 func main() {
 	// Initialize database connection
 	db, err := database.New()
@@ -53,7 +72,7 @@ func main() {
 	// Misc endpoint
 	router.GET("/sessioninfo", auth.VerifySession(nil), auth.SessionInfo)
 	router.GET("/account-migrate", database.ValidateKey(), database.MigrationHandler)
-
+	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	// starting the server
 	addr := fmt.Sprintf(":%s", os.Getenv("APP_PORT"))
