@@ -1,0 +1,102 @@
+basePath: /api
+definitions:
+  model.SendResponse:
+    properties:
+      account_id:
+        type: integer
+      amount:
+        type: number
+      currency:
+        type: string
+      recipient_account_id:
+        type: integer
+      transaction_at:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+  model.WithdrawRequest:
+    properties:
+      account_id:
+        type: integer
+      amount:
+        type: number
+      currency:
+        type: string
+    type: object
+  model.WithdrawResponse:
+    properties:
+      account_id:
+        type: integer
+      amount:
+        type: number
+      currency:
+        type: string
+      transaction_at:
+        type: string
+      transaction_id:
+        type: string
+    type: object
+externalDocs:
+  description: User Auth API docs
+  url: https://localhost:9090/docs/index.html
+host: localhost:9091
+info:
+  contact: {}
+  description: This is a payment service - corebank.
+  title: Payment Service API
+  version: "1.0"
+paths:
+  /transaction/send:
+    post:
+      consumes:
+      - application/json
+      description: transaction send money
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.SendResponse'
+            type: array
+      security:
+      - BearerAuth: []
+      summary: transaction send money
+      tags:
+      - transaction
+  /transaction/withdraw:
+    post:
+      consumes:
+      - application/json
+      description: transaction withdraw money
+      parameters:
+      - description: withdraw request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.WithdrawRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.WithdrawResponse'
+            type: array
+      security:
+      - BearerAuth: []
+      summary: transaction withdraw money
+      tags:
+      - transaction
+securityDefinitions:
+  BearerAuth:
+    description: Type "Bearer" followed by a space and JWT token (Get JWT from header
+      signin st-access-token).
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

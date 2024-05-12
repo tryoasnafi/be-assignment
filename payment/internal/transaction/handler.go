@@ -27,6 +27,16 @@ func (h AccountHandler) test(c *gin.Context) {
 	c.Status(http.StatusOK)
 }
 
+// Send Money
+// @Summary transaction send money
+// @Schemes
+// @Description transaction send money
+// @Tags transaction
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Success 200 {array} SendResponse
+// @Router /transaction/send [post]
 func (h AccountHandler) Send(c *gin.Context) {
 	sendReq := SendRequest{}
 	if err := c.ShouldBindJSON(&sendReq); err != nil {
@@ -47,6 +57,17 @@ func (h AccountHandler) Send(c *gin.Context) {
 	c.JSON(http.StatusOK, resp)
 }
 
+// Withdraw Money
+// @Summary transaction withdraw money
+// @Schemes
+// @Description transaction withdraw money
+// @Tags transaction
+// @Accept json
+// @Produce json
+// @Security BearerAuth
+// @Success 200 {array} WithdrawResponse
+// @Router /transaction/withdraw [post]
+// @Param request body WithdrawRequest true "withdraw request"
 func (h AccountHandler) Withdraw(c *gin.Context) {
 	withdrawReq := WithdrawRequest{}
 	if err := c.ShouldBindJSON(&withdrawReq); err != nil {
