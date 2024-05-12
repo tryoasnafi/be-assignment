@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/google/uuid"
+	. "github.com/tryoasnafi/be-assignment/common/dto"
 	"gorm.io/gorm"
 )
 

@@ -9,7 +9,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/tryoasnafi/be-assignment/account/internal/account"
 	"github.com/tryoasnafi/be-assignment/account/internal/auth"
-	"github.com/tryoasnafi/be-assignment/account/internal/auth_supertokens"
+	auth_supertokens "github.com/tryoasnafi/be-assignment/account/internal/auth-supertokens"
 	"github.com/tryoasnafi/be-assignment/account/internal/cors"
 	"github.com/tryoasnafi/be-assignment/account/internal/database"
 	"github.com/tryoasnafi/be-assignment/account/internal/user"

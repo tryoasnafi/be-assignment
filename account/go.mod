@@ -10,6 +10,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/joho/godotenv v1.3.0
 	github.com/supertokens/supertokens-golang v0.18.0
+	github.com/tryoasnafi/be-assignment/common v0.0.0-20240512124913-5233fdc1c394
 	gorm.io/datatypes v1.2.0
 	gorm.io/driver/postgres v1.5.7
 	gorm.io/gorm v1.25.10

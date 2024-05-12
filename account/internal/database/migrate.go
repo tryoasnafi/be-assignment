@@ -5,16 +5,16 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/tryoasnafi/be-assignment/account/internal/account"
 	"github.com/tryoasnafi/be-assignment/account/internal/user"
+	"github.com/tryoasnafi/be-assignment/common/dto"
 	"gorm.io/gorm"
 )
 
 func Migrate(d *gorm.DB) error {
 	return d.AutoMigrate(
 		user.User{},
-		account.Account{},
-		account.AccountHistories{},
+		dto.Account{},
+		dto.AccountHistories{},
 	)
 }
 

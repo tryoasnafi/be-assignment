@@ -4,12 +4,14 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+
+	. "github.com/tryoasnafi/be-assignment/common/dto"
 )
 
 type Service interface {
 	GetAllAccounts(userID uuid.UUID) ([]Account, error)
-	GetAccountByID(id uint) (*Account, error)	
-	CreateAccount(userUUID uuid.UUID, accountReq CreateAccountRequest) (*Account, error)	
+	GetAccountByID(id uint) (*Account, error)
+	CreateAccount(userUUID uuid.UUID, accountReq CreateAccountRequest) (*Account, error)
 }
 
 type accountService struct {
@@ -17,7 +19,7 @@ type accountService struct {
 }
 
 func NewService(repo Repository) *accountService {
-	return &accountService{repo}	
+	return &accountService{repo}
 }
 
 func (s accountService) GetAllAccounts(userID uuid.UUID) ([]Account, error) {
@@ -30,11 +32,11 @@ func (s accountService) GetAccountByID(id uint) (*Account, error) {
 
 func (s accountService) CreateAccount(userUUID uuid.UUID, accountReq CreateAccountRequest) (*Account, error) {
 	account := &Account{
-		UserID: userUUID,
-		Type: accountReq.Type,
+		UserID:   userUUID,
+		Type:     accountReq.Type,
 		Currency: accountReq.Currency,
-		Balance: 0,
-		Status: AccountActive,
+		Balance:  0,
+		Status:   AccountActive,
 		OpenedAt: time.Now(),
 	}
 	return s.repo.Create(account)

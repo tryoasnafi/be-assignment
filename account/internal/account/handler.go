@@ -58,7 +58,6 @@ func (h AccountHandler) GetAccountByID(c *gin.Context) {
 	c.JSON(http.StatusOK, account)
 }
 
-
 func (h AccountHandler) CreateAccount(c *gin.Context) {
 	accountReq := CreateAccountRequest{}
 	if err := c.ShouldBindJSON(&accountReq); err != nil {
