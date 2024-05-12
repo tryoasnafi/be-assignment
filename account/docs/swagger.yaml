@@ -190,7 +190,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: get account by id
+      description: get account by id and all transaction histories
       parameters:
       - description: Account ID
         in: path
@@ -206,7 +206,7 @@ paths:
             $ref: '#/definitions/model.Account'
       security:
       - BearerAuth: []
-      summary: get account by id
+      summary: get account and all payment histories
       tags:
       - accounts
   /auth/signin:

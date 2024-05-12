@@ -51,9 +51,9 @@ func (h AccountHandler) GetAllAccounts(c *gin.Context) {
 }
 
 // GetAccountByID
-// @Summary get account by id
+// @Summary get account and all payment histories
 // @Schemes
-// @Description get account by id
+// @Description get account by id and all transaction histories
 // @Tags accounts
 // @Accept json
 // @Produce json

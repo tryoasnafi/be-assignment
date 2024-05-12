@@ -82,7 +82,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "get account by id",
+                "description": "get account by id and all transaction histories",
                 "consumes": [
                     "application/json"
                 ],
@@ -92,7 +92,7 @@ const docTemplate = `{
                 "tags": [
                     "accounts"
                 ],
-                "summary": "get account by id",
+                "summary": "get account and all payment histories",
                 "parameters": [
                     {
                         "type": "integer",
