@@ -53,13 +53,6 @@ func main() {
 	router.Use(cors.Config())
 	// router.Use(auth.Verify())
 
-	// Misc endpoint
-	router.GET(
-		"/transaction-migrate",
-		database.ValidateKey(),
-		database.MigrationHandler,
-	)
-
 	// Register all routes
 	apiRoute := router.Group("api")
 
@@ -69,8 +62,9 @@ func main() {
 	transactionService := transaction.NewService(transactionRepo)
 	transaction.SetHandlers(apiRoute, transactionService)
 
-	// Misc
-	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	// Misc endpoint
+	apiRoute.POST("/transaction-migrate", database.ValidateKey(), database.MigrationHandler)
+	apiRoute.GET("/docs/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	// starting the server
 	addr := fmt.Sprintf(":%s", os.Getenv("APP_PORT"))

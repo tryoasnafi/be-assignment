@@ -18,12 +18,18 @@ func Migrate(d *gorm.DB) error {
 	)
 }
 
+type MigrationKey struct {
+	Key string `json:"key" example:"helloworld123"`
+}
+
+type DefaultResponse struct {
+	Message string `json:"message"`
+}
+
 // Validatekey is middleware to validate the key of migration
 func ValidateKey() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		in := struct {
-			Key string `json:"key"`
-		}{}
+		in := MigrationKey{}
 		key := os.Getenv("APP_MIGRATE_KEY")
 		if key == "" {
 			key = "helloworld"
@@ -39,7 +45,16 @@ func ValidateKey() gin.HandlerFunc {
 	}
 }
 
-// Handler for exec migration
+// Migration handler for account service
+// @Summary migrate account schema
+// @Schemes
+// @Description migrate account schema and the related tables
+// @Tags migration
+// @Accept json
+// @Produce json
+// @Success 200 {object} DefaultResponse
+// @Router /account-migrate [post]
+// @Param request body MigrationKey true "key"
 func MigrationHandler(c *gin.Context) {
 	if err := Migrate(DB); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

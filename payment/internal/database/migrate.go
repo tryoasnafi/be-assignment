@@ -15,6 +15,14 @@ func Migrate(d *gorm.DB) error {
 	)
 }
 
+type MigrationKey struct {
+	Key string `json:"key" example:"helloworld123"`
+}
+
+type DefaultResponse struct {
+	Message string `json:"message"`
+}
+
 // Validatekey is middleware to validate the key of migration
 func ValidateKey() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -36,7 +44,16 @@ func ValidateKey() gin.HandlerFunc {
 	}
 }
 
-// Handler for exec migration
+// Migration handler for exec migration
+// @Summary migrate transaction schema
+// @Schemes
+// @Description migrate transaction schema and the related tables
+// @Tags migration
+// @Accept json
+// @Produce json
+// @Success 200 {object} DefaultResponse
+// @Router /transaction-migrate [post]
+// @Param request body MigrationKey true "key"
 func MigrationHandler(c *gin.Context) {
 	if err := Migrate(DB); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

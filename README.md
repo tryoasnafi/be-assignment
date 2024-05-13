@@ -9,8 +9,8 @@ Features:
 
 ### API Documentation
 You can look to docs for each directory or open the documentation here:
-- [Account API](http://localhost:9090/docs/index.html) 
-- [Transaction API](http://localhost:9091/docs/index.html) 
+- [Account API](http://localhost:9090/api/docs/index.html) 
+- [Transaction API](http://localhost:9091/api/docs/index.html) 
 
 ### Tech-stack:
 - Supertokens
@@ -33,6 +33,7 @@ You need to have:
 4. Copy .env.example to .env (do both account and payment)
 5. You need to install air
 6. Run make up or `docker compose -f compose.dev.yml up -d`
+7. After that open the docs and exec `account-migrate` and `transaction-migrate` endpointse.
 ```sh
 git clone https://github.com/tryoasnafi/be-assignment
 cd be-assignment/account

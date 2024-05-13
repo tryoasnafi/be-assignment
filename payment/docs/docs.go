@@ -15,6 +15,40 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/transaction-migrate": {
+            "post": {
+                "description": "migrate transaction schema and the related tables",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "migration"
+                ],
+                "summary": "migrate transaction schema",
+                "parameters": [
+                    {
+                        "description": "key",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_database.MigrationKey"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal_database.DefaultResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/transaction/send": {
             "post": {
                 "security": [
@@ -90,6 +124,23 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "internal_database.DefaultResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_database.MigrationKey": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "example": "helloworld123"
+                }
+            }
+        },
         "model.SendResponse": {
             "type": "object",
             "properties": {

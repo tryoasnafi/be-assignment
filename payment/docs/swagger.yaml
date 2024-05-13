@@ -1,5 +1,16 @@
 basePath: /api
 definitions:
+  internal_database.DefaultResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  internal_database.MigrationKey:
+    properties:
+      key:
+        example: helloworld123
+        type: string
+    type: object
   model.SendResponse:
     properties:
       account_id:
@@ -47,6 +58,28 @@ info:
   title: Payment Service API
   version: "1.0"
 paths:
+  /transaction-migrate:
+    post:
+      consumes:
+      - application/json
+      description: migrate transaction schema and the related tables
+      parameters:
+      - description: key
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/internal_database.MigrationKey'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal_database.DefaultResponse'
+      summary: migrate transaction schema
+      tags:
+      - migration
   /transaction/send:
     post:
       consumes:

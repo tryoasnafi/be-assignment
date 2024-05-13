@@ -70,9 +70,9 @@ func main() {
 	account.SetHandlers(apiRoute, accountService)
 
 	// Misc endpoint
-	router.GET("/sessioninfo", auth.VerifySession(nil), auth.SessionInfo)
-	router.GET("/account-migrate", database.ValidateKey(), database.MigrationHandler)
-	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
+	apiRoute.GET("/sessioninfo", auth.VerifySession(nil), auth.SessionInfo)
+	apiRoute.POST("/account-migrate", database.ValidateKey(), database.MigrationHandler)
+	apiRoute.GET("/docs/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	// starting the server
 	addr := fmt.Sprintf(":%s", os.Getenv("APP_PORT"))

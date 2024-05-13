@@ -15,6 +15,40 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/account-migrate": {
+            "post": {
+                "description": "migrate account schema and the related tables",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "migration"
+                ],
+                "summary": "migrate account schema",
+                "parameters": [
+                    {
+                        "description": "key",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/internal_database.MigrationKey"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal_database.DefaultResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/accounts": {
             "get": {
                 "security": [
@@ -283,6 +317,23 @@ const docTemplate = `{
                 },
                 "timeJoined": {
                     "type": "integer"
+                }
+            }
+        },
+        "internal_database.DefaultResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_database.MigrationKey": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "example": "helloworld123"
                 }
             }
         },
