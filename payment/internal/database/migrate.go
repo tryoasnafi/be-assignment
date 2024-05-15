@@ -45,15 +45,15 @@ func ValidateKey() gin.HandlerFunc {
 }
 
 // Migration handler for exec migration
-// @Summary migrate transaction schema
-// @Schemes
-// @Description migrate transaction schema and the related tables
-// @Tags migration
-// @Accept json
-// @Produce json
-// @Success 200 {object} DefaultResponse
-// @Router /transaction-migrate [post]
-// @Param request body MigrationKey true "key"
+//	@Summary	migrate transaction schema
+//	@Schemes
+//	@Description	migrate transaction schema and the related tables
+//	@Tags			migration
+//	@Accept			json
+//	@Produce		json
+//	@Success		200	{object}	DefaultResponse
+//	@Router			/transaction-migrate [post]
+//	@Param			request	body	MigrationKey	true	"key"
 func MigrationHandler(c *gin.Context) {
 	if err := Migrate(DB); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

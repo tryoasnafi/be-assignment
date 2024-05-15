@@ -18,15 +18,15 @@ import (
 type SupertokensAPIFunc = func(originalImplementation epmodels.APIInterface) epmodels.APIInterface
 
 // Auth Supertokens
-// @Summary Sign in to get token
-// @Schemes
-// @Description get token from header fields (check docs for more details request example)
-// @Tags auth
-// @Accept json
-// @Produce json
-// @Success 200 {object} AuthResponse
-// @Router /auth/signin [post]
-// @Param user body AuthRequest true "auth signin"
+//	@Summary	Sign in to get token
+//	@Schemes
+//	@Description	get token from header fields (check docs for more details request example)
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//	@Success		200	{object}	AuthResponse
+//	@Router			/auth/signin [post]
+//	@Param			user	body	AuthRequest	true	"auth signin"
 // {
 //   "formFields": [
 //     {
@@ -76,15 +76,15 @@ func Init(userService *user.UserService) error {
 }
 
 // Auth Supertokens
-// @Summary Sign up user
-// @Schemes
-// @Description register user (check docs for more details request example)
-// @Tags auth
-// @Accept json
-// @Produce json
-// @Success 200 {} AuthResponse
-// @Router /auth/signup [post]
-// @Param user body AuthRequest true "auth signup"
+//	@Summary	Sign up user
+//	@Schemes
+//	@Description	register user (check docs for more details request example)
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//	@Success		200	{object}	AuthResponse
+//	@Router			/auth/signup [post]
+//	@Param			user	body	AuthRequest	true	"auth signup"
 // {
 //   "formFields": [
 //     {

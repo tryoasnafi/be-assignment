@@ -197,7 +197,7 @@ paths:
               $ref: '#/definitions/model.Account'
             type: array
       security:
-      - BearerAuth: []
+      - bearerAuth: []
       summary: get all account of user
       tags:
       - accounts
@@ -215,11 +215,11 @@ paths:
               $ref: '#/definitions/model.Account'
             type: array
       security:
-      - BearerAuth: []
+      - bearerAuth: []
       summary: create bank account
       tags:
       - accounts
-  /accounts/:id:
+  /accounts/{id}:
     get:
       consumes:
       - application/json
@@ -238,7 +238,7 @@ paths:
           schema:
             $ref: '#/definitions/model.Account'
       security:
-      - BearerAuth: []
+      - bearerAuth: []
       summary: get account and all payment histories
       tags:
       - accounts
@@ -283,11 +283,11 @@ paths:
         "200":
           description: OK
           schema:
-            type: ""
+            $ref: '#/definitions/internal_auth-supertokens.AuthResponse'
       summary: Sign up user
       tags:
       - auth
-  /users/:id:
+  /users/{id}:
     get:
       consumes:
       - application/json
@@ -308,12 +308,12 @@ paths:
               $ref: '#/definitions/internal_user.User'
             type: array
       security:
-      - BearerAuth: []
+      - bearerAuth: []
       summary: create bank account
       tags:
       - users
 securityDefinitions:
-  BearerAuth:
+  bearerAuth:
     description: Type "Bearer" followed by a space and JWT token (Get JWT from header
       signin st-access-token).
     in: header

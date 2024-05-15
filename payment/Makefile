@@ -1,2 +1,2 @@
 doc:
-	@swag init -g ./cmd/payment/main.go -o ./docs --parseDependency --parseInternal
+	@swag init -g ./cmd/payment/main.go -o ./docs --pd && swag fmt

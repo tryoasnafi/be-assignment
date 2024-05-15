@@ -47,7 +47,7 @@
             "post": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "transaction send money",
@@ -78,7 +78,7 @@
             "post": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "transaction withdraw money",
@@ -194,7 +194,7 @@
         }
     },
     "securityDefinitions": {
-        "BearerAuth": {
+        "bearerAuth": {
             "description": "Type \"Bearer\" followed by a space and JWT token (Get JWT from header signin st-access-token).",
             "type": "apiKey",
             "name": "Authorization",

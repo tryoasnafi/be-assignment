@@ -53,7 +53,7 @@ const docTemplate = `{
             "get": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "get all related accounts of a user",
@@ -82,7 +82,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "create bank account",
@@ -109,11 +109,11 @@ const docTemplate = `{
                 }
             }
         },
-        "/accounts/:id": {
+        "/accounts/{id}": {
             "get": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "get account by id and all transaction histories",
@@ -208,17 +208,17 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": ""
+                            "$ref": "#/definitions/internal_auth-supertokens.AuthResponse"
                         }
                     }
                 }
             }
         },
-        "/users/:id": {
+        "/users/{id}": {
             "get": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "create bank account",
@@ -482,7 +482,7 @@ const docTemplate = `{
         }
     },
     "securityDefinitions": {
-        "BearerAuth": {
+        "bearerAuth": {
             "description": "Type \"Bearer\" followed by a space and JWT token (Get JWT from header signin st-access-token).",
             "type": "apiKey",
             "name": "Authorization",

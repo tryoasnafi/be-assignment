@@ -47,7 +47,7 @@
             "get": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "get all related accounts of a user",
@@ -76,7 +76,7 @@
             "post": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "create bank account",
@@ -103,11 +103,11 @@
                 }
             }
         },
-        "/accounts/:id": {
+        "/accounts/{id}": {
             "get": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "get account by id and all transaction histories",
@@ -202,17 +202,17 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": ""
+                            "$ref": "#/definitions/internal_auth-supertokens.AuthResponse"
                         }
                     }
                 }
             }
         },
-        "/users/:id": {
+        "/users/{id}": {
             "get": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "create bank account",
@@ -476,7 +476,7 @@
         }
     },
     "securityDefinitions": {
-        "BearerAuth": {
+        "bearerAuth": {
             "description": "Type \"Bearer\" followed by a space and JWT token (Get JWT from header signin st-access-token).",
             "type": "apiKey",
             "name": "Authorization",

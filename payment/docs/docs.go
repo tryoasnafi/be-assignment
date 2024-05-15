@@ -53,7 +53,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "transaction send money",
@@ -84,7 +84,7 @@ const docTemplate = `{
             "post": {
                 "security": [
                     {
-                        "BearerAuth": []
+                        "bearerAuth": []
                     }
                 ],
                 "description": "transaction withdraw money",
@@ -200,7 +200,7 @@ const docTemplate = `{
         }
     },
     "securityDefinitions": {
-        "BearerAuth": {
+        "bearerAuth": {
             "description": "Type \"Bearer\" followed by a space and JWT token (Get JWT from header signin st-access-token).",
             "type": "apiKey",
             "name": "Authorization",

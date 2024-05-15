@@ -95,7 +95,7 @@ paths:
               $ref: '#/definitions/model.SendResponse'
             type: array
       security:
-      - BearerAuth: []
+      - bearerAuth: []
       summary: transaction send money
       tags:
       - transaction
@@ -121,12 +121,12 @@ paths:
               $ref: '#/definitions/model.WithdrawResponse'
             type: array
       security:
-      - BearerAuth: []
+      - bearerAuth: []
       summary: transaction withdraw money
       tags:
       - transaction
 securityDefinitions:
-  BearerAuth:
+  bearerAuth:
     description: Type "Bearer" followed by a space and JWT token (Get JWT from header
       signin st-access-token).
     in: header

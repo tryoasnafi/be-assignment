@@ -27,20 +27,20 @@ func init() {
 	}
 }
 
-// @title           Account Service API
-// @version         1.0
-// @description     This is a account service - corebank.
+//	@title			Account Service API
+//	@version		1.0
+//	@description	This is a account service - corebank.
 
-// @host      localhost:9090
-// @BasePath  /api
+//	@host		localhost:9090
+//	@BasePath	/api
 
-// @securityDefinitions.apikey BearerAuth
-// @in header
-// @name Authorization
-// @description Type "Bearer" followed by a space and JWT token (Get JWT from header signin st-access-token).
+//	@securityDefinitions.apikey	bearerAuth
+//	@in							header
+//	@name						Authorization
+//	@description				Type "Bearer" followed by a space and JWT token (Get JWT from header signin st-access-token).
 
-// @externalDocs.description  Supertokens Auth
-// @externalDocs.url          https://app.swaggerhub.com/apis/supertokens/FDI
+//	@externalDocs.description	Supertokens Auth
+//	@externalDocs.url			https://app.swaggerhub.com/apis/supertokens/FDI
 func main() {
 	// Initialize database connection
 	db, err := database.New()

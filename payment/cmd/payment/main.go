@@ -27,20 +27,20 @@ func init() {
 	go auth.FetchJWKs()
 }
 
-// @title           Payment Service API
-// @version         1.0
-// @description     This is a payment service - corebank.
+//	@title			Payment Service API
+//	@version		1.0
+//	@description	This is a payment service - corebank.
 
-// @host      localhost:9091
-// @BasePath  /api
+//	@host		localhost:9091
+//	@BasePath	/api
 
-// @securityDefinitions.apikey BearerAuth
-// @in header
-// @name Authorization
-// @description Type "Bearer" followed by a space and JWT token (Get JWT from header signin st-access-token).
+//	@securityDefinitions.apikey	bearerAuth
+//	@in							header
+//	@name						Authorization
+//	@description				Type "Bearer" followed by a space and JWT token (Get JWT from header signin st-access-token).
 
-// @externalDocs.description  User Auth API docs
-// @externalDocs.url          https://localhost:9090/docs/index.html
+//	@externalDocs.description	User Auth API docs
+//	@externalDocs.url			https://localhost:9090/docs/index.html
 func main() {
 	// Initialize database connection
 	db, err := database.New()
